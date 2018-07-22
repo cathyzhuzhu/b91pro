@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pulsar.node.mapper.AreaMapper" >
+    <resultMap id="areas" type="com.pulsar.domain.AreaDto" >
+        <result column="country_code" property="countryCode"  />
+        <result column="country_name" property="countryName"  />
+     <!--   <result column="country_picture_url" property="countryPictureUrl"  />-->
+        <result column="alpha2" property="alpha2"  />
+    </resultMap>
+
+    <select id="getCountryList"  resultMap="areas"  >
+		SELECT
+		        country_code,
+		        country_name,
+-- 		        country_picture_url,
+		        alpha2
+		  FROM t_area
+		  ORDER BY country_code asc
+	</select>
+
+</mapper>

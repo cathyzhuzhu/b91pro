@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pulsar.node.mapper.NodeMapper" >
+    <insert id="addApplyNode" parameterType="com.pulsar.domain.NodeDto" useGeneratedKeys="true" keyProperty="id">
+        insert into t_node(
+        node_name,
+        alpha2,
+        province_code,
+        user_type,
+        enterprise,
+        linkman,
+        country_code,
+        contact_phone,
+        email
+        )
+        values(
+        #{nodeName},
+        #{alpha2},
+        #{provinceCode},
+        #{userType},
+        #{enterprise},
+        #{linkman},
+        #{countryCode},
+        #{contactPhone},
+        #{email}
+        )
+    </insert>
+    <select id="getNodeExists" resultType="int" parameterType="com.pulsar.domain.NodeDto">
+      select count(1) as total
+      from t_node
+      where node_name = #{nodeName}
+
+    </select>
+</mapper>

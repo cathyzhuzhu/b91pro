@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pulsar.node.mapper.ProvinceRelatedMapper" >
+    <resultMap id="provinces" type="com.pulsar.domain.ProvinceRelatedDto" >
+        <result column="province_code" property="provinceCode"  />
+        <result column="province_name" property="provinceName"  />
+        <result column="province_name_en" property="provinceNameEn"  />
+        <result column="country_code" property="countryCode"  />
+        <result column="alpha2" property="alpha2"  />
+    </resultMap>
+
+    <select id="getProvinceList"  resultMap="provinces"  parameterType="string">
+        SELECT
+                province_code,
+                province_name,
+                province_name_en,
+                country_code,
+                alpha2
+        FROM t_province_related
+        WHERE alpha2=#{alpha2}
+        order by country_code asc
+    </select>
+
+</mapper>
